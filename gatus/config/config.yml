@@ -129,3 +129,192 @@ endpoints:
       - type: discord
         descripton: "Overseerr is Down"
         send-on-resolved: true
+
+  - name: Tautulli
+    group: Media Server
+    url: "https://mediastats${LOCAL_DOMAIN}"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+        descripton: "Tautulli is Down"
+        send-on-resolved: true
+
+  - name: Tdarr
+    group: Media Server
+    url: "https://tdarr${LOCAL_DOMAIN}"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+        descripton: "Tdarr is Down"
+        send-on-resolved: true
+
+  - name: Plex
+    group: Media Server
+    url: "tcp://${MERCURY}:32400"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Plex is Down"
+        send-on-resolved: true
+
+  # Networking Services
+  - name: Adguard Home
+    group: Networking Services
+    url: "tcp://${AD_GUARD}:53"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Adguard Home is Down"
+        send-on-resolved: true
+
+  - name: Bind DNS
+    group: Networking Services
+    url: "tcp://${INT_DOCKERHOST_01}:53"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Bind DNS is Down"
+        send-on-resolved: true
+
+  - name: Internal Nginx Proxy Manager
+    group: Networking Services
+    url: "tcp://${INT_DOCKERHOST_01}:81"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Internal NPM is Down"
+        send-on-resolved: true
+
+  - name: External Nginx Proxy Manager
+    group: Networking Services
+    url: "tcp://${EXT_DOCKERHOST_01}:80"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Internal NPM is Down"
+        send-on-resolved: true
+
+  # Network Equipment
+  - name: UDM Pro
+    group: Network Equipment
+    url: "icmp://${FW}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "UDM Pro is Down"
+        send-on-resolved: true
+
+  - name: Standard 24 Switch
+    group: Network Equipment
+    url: "icmp://${SW1_24}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Standard 24 Switch is Down"
+        send-on-resolved: true
+
+  - name: Enterprise 24 PoE Switch
+    group: Network Equipment
+    url: "icmp://${SW2_24POE}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Enterprise 24 PoE Switch is Down"
+        send-on-resolved: true
+
+  - name: Ceph Switch
+    group: Network Equipment
+    url: "icmp://${SW3_10GB}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Ceph Switch is Down"
+        send-on-resolved: true
+
+  - name: AP Switch
+    group: Network Equipment
+    url: "icmp://${SW4_AP}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "AP Switch is Down"
+        send-on-resolved: true
+
+  - name: Camera Switch
+    group: Network Equipment
+    url: "icmp://${SW5_CAMS}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Camera Switch is Down"
+        send-on-resolved: true
+
+  - name: Upstairs AP
+    group: Network Equipment
+    url: "icmp://${AP1}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Upstairs AP is Down"
+        send-on-resolved: true
+
+  - name: Family Room AP
+    group: Network Equipment
+    url: "icmp://${AP2}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Family Room AP is Down"
+        send-on-resolved: true
+
+  - name: Living Room AP
+    group: Network Equipment
+    url: "icmp://${AP4}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Living Room AP is Down"
+        send-on-resolved: true
+
+  - name: Basement AP
+    group: Network Equipment
+    url: "icmp://${AP3}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Basement AP is Down"
+        send-on-resolved: true
