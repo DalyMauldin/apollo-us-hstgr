@@ -154,10 +154,10 @@ endpoints:
 
   - name: Plex
     group: Media Server
-    url: "tcp://${MERCURY}:32400"
+    url: "https://plex${LOCAL_DOMAIN}"
     interval: 1m
     conditions:
-      - "[CONNECTED] == true"
+      - "[STATUS] == 200"
     alerts:
       - type: discord
         descripton: "Plex is Down"
