@@ -154,10 +154,10 @@ endpoints:
 
   - name: Plex
     group: Media Server
-    url: "https://plex${LOCAL_DOMAIN}"
+    url: "icmp://${MERCURY}:32400"
     interval: 1m
     conditions:
-      - "[STATUS] == 200"
+      - "[CONNECTED] == true"
     alerts:
       - type: discord
         descripton: "Plex is Down"
@@ -314,6 +314,18 @@ endpoints:
     interval: 1m
     conditions:
       - "[CONNECTED] == true"
+    alerts:
+      - type: discord
+        descripton: "Basement AP is Down"
+        send-on-resolved: true
+
+  # Services
+  - name: The Vault
+    group: Services
+    url: "https://pwvault${DOMAIN}"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
     alerts:
       - type: discord
         descripton: "Basement AP is Down"
