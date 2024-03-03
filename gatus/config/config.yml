@@ -2,7 +2,54 @@ storage:
   type: sqlite
   path: /data/data.db
 
+alerting:
+  discord:
+    webhook-url: ${DISCORD_WEBHOOK}
+
 endpoints:
+  # Physical Servers
+  - name: Mercury
+    group: Servers
+    url: "icmp://${MERCURY}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: Pantheon
+    group: Servers
+    url: "icmp://${PANTHEON}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: Poseidon
+    group: Servers
+    url: "icmp://${POSEIDON}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: Zeus
+    group: Servers
+    url: "icmp://${ZEUS}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: Hades
+    group: Servers
+    url: "icmp://${HADES}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: Remus
+    group: Servers
+    url: "icmp://${REMUS}"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
   - name: front-end
     group: core
     url: "https://google.com/"
