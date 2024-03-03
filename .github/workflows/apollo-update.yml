@@ -1,0 +1,27 @@
+name: Run Deployement
+
+on:
+  push:
+    branches: ['main']
+
+  workflow_dispatch:
+
+jobs:
+  run_deployment:
+    name: Deploy Repo Services
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.APOLLO_PRIVATE_SSH_KEY }}
+        known_hosts: 'placeholder'
+    
+    - name: Adding Known Hosts
+      run: ssh-keyscam -H ${{ secrets.APOLLO }} >> ~/.ssh/known_hosts
+    
+    - name: Connect to Apollo and Run Git Pull
+      run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }} && git pull && exit"
+    
+    - name: Cleanup SSH Key
+      run: rm -rf ~/.ssh
