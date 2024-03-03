@@ -1,13 +1,14 @@
-name: Run Deployement
+name: Update Gatus
 
 on:
   push:
     branches: ['main']
+    paths: ['gatus/**']
 
   workflow_dispatch:
 
 jobs:
-  run_deployment:
+  update_apollo:
     name: Deploy Repo Services
     runs-on: ubuntu-latest
     steps:
@@ -22,3 +23,8 @@ jobs:
     
     - name: Connect to Apollo and Run Git Pull
       run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }} && git pull && exit"
+
+  deploy_gatus:
+    name: Deploy Gatus Container
+    runs-on: ubuntu-latest
+    needs: update-apollo
