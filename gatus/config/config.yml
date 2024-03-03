@@ -154,7 +154,7 @@ endpoints:
 
   - name: Plex
     group: Media Server
-    url: "icmp://${MERCURY}:32400"
+    url: "tcp://${MERCURY}:32400"
     interval: 1m
     conditions:
       - "[CONNECTED] == true"
