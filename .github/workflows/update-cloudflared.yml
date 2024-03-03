@@ -22,7 +22,7 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.APOLLO }} >> ~/.ssh/known_hosts
 
       - name: Connect to Apollo and Run Git Pull and Add Cloudflare Tunnel Token to .env
-        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "echo CLOUDFLARE_TUNNEL_TOKEN=${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} > ${{ secrets.DIRECTORY }}/cloudflared/.env && cd ${{ secrets.DIRECTORY }} && git pull && exit"
+        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }} && rm -r cloudflared/.env && touch cloudflared/.env && echo CLOUDFLARE_TUNNEL_TOKEN=${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }} > ${{ secrets.DIRECTORY }}/cloudflared/.env && git pull && exit"
 
   deploy_cloudflared:
     name: Deploy Cloudflared Container
