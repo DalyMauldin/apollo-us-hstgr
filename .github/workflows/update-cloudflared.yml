@@ -39,4 +39,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.APOLLO }} >> ~/.ssh/known_hosts
 
       - name: Connect to Apollo and Restart Container
-        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }}/cloudfared && docker compose down && docker compose pull && docker compose up -d && exit"
+        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }}/cloudflared && docker compose down && docker compose pull && docker compose up -d && exit"
