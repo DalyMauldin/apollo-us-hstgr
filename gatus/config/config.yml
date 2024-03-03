@@ -50,75 +50,38 @@ endpoints:
     conditions:
       - "[CONNECTED] == true"
 
+  # Media Server Components
   - name: SabNZBd
     group: Media Server
-    url: "https://sabnzbd.l.mauldin.casa"
+    url: "https://sabnzbd${LOCAL_DOMAIN}"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: Prowlarr
     group: Media Server
-    url: "https://prowlarr.l.mauldin.casa"
+    url: "https://prowlarr${LOCAL_DOMAIN}"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: Sonarr
     group: Media Server
-    url: "https://sonarrhd.l.mauldin.casa"
+    url: "https://sonarrhd${LOCAL_DOMAIN}"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: Radarr
     group: Media Server
-    url: "https://radarrhd.l.mauldin.casa"
+    url: "https://radarrhd${LOCAL_DOMAIN}"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: Overseerr
     group: Media Server
-    url: "https://requests.mauldin.casa"
+    url: "https://requests${DOMAIN}"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
-
-  - name: front-end
-    group: core
-    url: "https://google.com/"
-    interval: 5m
-    conditions:
-      - "[STATUS] == 200"
-      - "[CERTIFICATE_EXPIRATION] > 48h"
-
-  - name: monitoring
-    group: internal
-    url: "https://google.com/"
-    interval: 5m
-    conditions:
-      - "[STATUS] == 200"
-
-  - name: nas
-    group: internal
-    url: "https://example.org/"
-    interval: 5m
-    conditions:
-      - "[STATUS] == 200"
-
-  - name: example-dns-query
-    url: "8.8.8.8" # Address of the DNS server to use
-    interval: 5m
-    dns:
-      query-name: "example.com"
-      query-type: "A"
-    conditions:
-      - "[BODY] == 93.184.216.34"
-      - "[DNS_RCODE] == NOERROR"
-
-  - name: icmp-ping
-    url: "icmp://example.org"
-    interval: 1m
-    conditions:
-      - "[CONNECTED] == true"
