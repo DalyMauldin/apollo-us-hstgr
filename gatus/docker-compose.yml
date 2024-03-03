@@ -1,36 +1,9 @@
 version: "3.9"
 services:
-  postgres:
-    image: postgres
-    container_name: postgres
-    restart: unless-stopped
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=gatus
-      - POSTGRES_USER=gatususr
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    networks:
-      - web
-
   gatus:
     image: twinproduction/gatus:latest
-    container_name: gatus
-    restart: unless-stopped
     ports:
       - "8080:8080"
-    environment:
-      - POSTGRES_USER=gatususr
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=gatus
     volumes:
       - ./config:/config
-    networks:
-      - web
-    depends_on:
-      - postgres
-
-networks:
-  web:
+      - ./data:/data/
