@@ -50,6 +50,13 @@ endpoints:
     conditions:
       - "[CONNECTED] == true"
 
+  - name: SabNZBd
+    group: Media Server
+    url: "sonarrhd.l.mauldin.casa"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
   - name: front-end
     group: core
     url: "https://google.com/"
