@@ -52,7 +52,35 @@ endpoints:
 
   - name: SabNZBd
     group: Media Server
+    url: "https://sabnzbd.l.mauldin.casa"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: Prowlarr
+    group: Media Server
+    url: "https://prowlarr.l.mauldin.casa"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: Sonarr
+    group: Media Server
     url: "https://sonarrhd.l.mauldin.casa"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: Radarr
+    group: Media Server
+    url: "https://radarrhd.l.mauldin.casa"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: Overseerr
+    group: Media Server
+    url: "https://requests.mauldin.casa"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
