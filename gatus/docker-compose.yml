@@ -10,7 +10,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_DB=gatus
-      - POSTGRES_USER=gatususer
+      - POSTGRES_USER=gatususr
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     networks:
       - web
@@ -22,7 +22,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - POSTGRES_USER=gatususer
+      - POSTGRES_USER=gatususr
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=gatus
     volumes:
