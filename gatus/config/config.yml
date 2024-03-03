@@ -3,9 +3,9 @@ storage:
   path: /data/data.db
 
 endpoints:
-  - name: back-end
+  - name: front-end
     group: core
-    url: "https://example.org/"
+    url: "https://google.com/"
     interval: 5m
     conditions:
       - "[STATUS] == 200"
