@@ -1,0 +1,42 @@
+name: Update Cloudflared
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["cloudflared/**"]
+
+  workflow_dispatch:
+
+jobs:
+  update_apollo:
+    name: Deploy Repo Services
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.APOLLO_PRIVATE_SSH_KEY }}
+          known_hosts: "placeholder"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.APOLLO }} >> ~/.ssh/known_hosts
+
+      - name: Connect to Apollo and Run Git Pull
+        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }} && git pull && exit"
+
+  deploy_gatus:
+    name: Deploy Cloudflared Container
+    runs-on: ubuntu-latest
+    needs: update_apollo
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.APOLLO_PRIVATE_SSH_KEY }}
+          known_hosts: "placeholder"
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.APOLLO }} >> ~/.ssh/known_hosts
+
+      - name: Connect to Apollo and Restart Container
+        run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }}/cloudfared && docker compose down && docker compose pull && docker compose up -d && exit"
