@@ -52,7 +52,7 @@ endpoints:
 
   - name: SabNZBd
     group: Media Server
-    url: "sonarrhd.l.mauldin.casa"
+    url: "https://sonarrhd.l.mauldin.casa"
     interval: 1m
     conditions:
       - "[STATUS] == 200"
