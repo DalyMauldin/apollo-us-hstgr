@@ -22,6 +22,3 @@ jobs:
     
     - name: Connect to Apollo and Run Git Pull
       run: ssh ${{ secrets.APOLLO_USER }}@${{ secrets.APOLLO }} "cd ${{ secrets.DIRECTORY }} && git pull && exit"
-    
-    - name: Cleanup SSH Key
-      run: rm -rf ~/.ssh
