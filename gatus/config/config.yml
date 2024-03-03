@@ -13,7 +13,7 @@ endpoints:
 
   - name: monitoring
     group: internal
-    url: "https://example.org/"
+    url: "https://google.com/"
     interval: 5m
     conditions:
       - "[STATUS] == 200"
