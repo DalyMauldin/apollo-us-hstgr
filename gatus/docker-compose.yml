@@ -2,6 +2,7 @@ version: "3.9"
 services:
   gatus:
     container_name: gatus
+    restart: unless-stopped
     image: twinproduction/gatus:latest
     ports:
       - "8080:8080"
