@@ -8,3 +8,4 @@ services:
     volumes:
       - ./config:/config
       - ./data:/data/
+    env_file: .env
